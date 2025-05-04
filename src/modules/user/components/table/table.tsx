@@ -83,7 +83,6 @@ export default function TableUser() {
     setCurrentPage(1)
   }
 
-
   return (
     <div className="container mx-auto px-8 py-8">
       <div className="grid grid-cols-1 gap-8">
@@ -136,7 +135,7 @@ export default function TableUser() {
                         <TableHead className="text-slate-700 text-center font-medium">
                           Rol
                         </TableHead>
-                        <TableHead className="text-right text-slate-700 text-center font-medium">
+                        <TableHead className=" text-slate-700 text-center font-medium">
                           Acciones
                         </TableHead>
                       </TableRow>
