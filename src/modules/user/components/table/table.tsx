@@ -42,9 +42,11 @@ import { useDeleteUser } from '../../services/mutation.service'
 import { useUserStoreUpdate } from '../../store/useStoreUpdateUser'
 import { SkeletonTableGlobal } from '@/components/ui/skeleton.table'
 import { Input } from '@/components/ui/input'
+import { useDebounce } from '@/hooks/debounse'
 
 export default function TableUser() {
   const [currentPage, setCurrentPage] = useState<number>(1)
+  const [search, setSearch] = useState<string>('')
   const [pageSize, setPageSize] = useState<number>(10)
   const { data: profile } = useGetProfile()
   const { mutate: deleteUser, isPending: isLoadingDeleteUser } = useDeleteUser()
@@ -82,6 +84,14 @@ export default function TableUser() {
     setPageSize(Number(value))
     setCurrentPage(1)
   }
+  const deounceSearch = useDebounce(search, 1000)
+  const handleSearch = (value: string) => setSearch(value.toLowerCase())
+
+  const filteredUsers = users?.data.filter((user) =>
+    `${user.username} ${user.firstName} ${user.lastName}`
+      .toLowerCase()
+      .includes(deounceSearch)
+  )
 
   return (
     <div className="container mx-auto px-8 py-8">
@@ -102,7 +112,7 @@ export default function TableUser() {
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-slate-400" />
                 <Input
                   type="text"
-                  onChange={(e) => console.log(e.target.value)}
+                  onChange={(e) => handleSearch(e.target.value)}
                   placeholder="Buscar usuario..."
                   className="pl-9 border-slate-200 bg-white focus-visible:ring-slate-400"
                 />
@@ -141,7 +151,7 @@ export default function TableUser() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {users?.data.map((user) => (
+                      {filteredUsers?.map((user) => (
                         <TableRow
                           key={user.id}
                           className="hover:bg-slate-50 border-b border-slate-100"
@@ -207,11 +217,11 @@ export default function TableUser() {
                     <p className="text-sm text-slate-500">
                       Mostrando{' '}
                       <span className="font-medium text-slate-700">
-                        {Math.min(pageSize, totalUsers)}
+                        {Math.min(pageSize, filteredUsers?.length || 0)}
                       </span>{' '}
                       de{' '}
                       <span className="font-medium text-slate-700">
-                        {totalUsers}
+                        {filteredUsers?.length || 0}
                       </span>{' '}
                       usuarios
                     </p>
