@@ -58,7 +58,7 @@ import ProductDetails from './product-details'
 import { ProductFormUpdate } from './product-form-edit'
 import ProductNewImg from './product-new-img'
 import Image from 'next/image'
-import { useDebounce } from '../hooks/debounse'
+import { useDebounce } from '../../../hooks/debounse'
 
 export function ProductsTable() {
   const [selectedProductId, setSelectedProductId] = useState<string | null>(
