@@ -1,5 +1,4 @@
 'use client'
-
 import Profile from '@/components/profile'
 import { SidebarWrapper } from '@/components/sidebar/sidebar-wrappter'
 import {
