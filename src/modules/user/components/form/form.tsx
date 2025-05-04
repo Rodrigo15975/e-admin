@@ -126,6 +126,7 @@ export function UserForm() {
                         placeholder="usuario123"
                         {...field}
                         className="border-slate-200 focus-visible:ring-slate-400"
+                        autoComplete='username'
                       />
                     </FormControl>
                     <FormDescription className="text-xs text-slate-500">
@@ -184,6 +185,7 @@ export function UserForm() {
                         placeholder="Juan"
                         {...field}
                         className="border-slate-200 focus-visible:ring-slate-400"
+                        autoComplete='given-name'
                       />
                     </FormControl>
                     <FormMessage />
@@ -203,6 +205,7 @@ export function UserForm() {
                         placeholder="Pérez"
                         {...field}
                         className="border-slate-200 focus-visible:ring-slate-400"
+                        autoComplete='family-name'
                       />
                     </FormControl>
                     <FormMessage />
@@ -226,6 +229,7 @@ export function UserForm() {
                         placeholder="******"
                         {...field}
                         className="border-slate-200 focus-visible:ring-slate-400"
+                        autoComplete='new-password'
                       />
                     </FormControl>
                     <FormDescription className="text-xs text-slate-500">
