@@ -48,7 +48,7 @@ export function ProductForm() {
         console.log({
           imageFiles,
         })
-
+        
         setImageFiles([])
         router.refresh()
       },
