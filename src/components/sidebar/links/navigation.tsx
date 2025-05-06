@@ -1,7 +1,4 @@
-import {
-  BookCheck,
-  User,
-} from 'lucide-react'
+import { BookCheck, User } from 'lucide-react'
 import type { ReactNode } from 'react'
 
 interface NavigationItem {
@@ -28,6 +25,11 @@ export const navigationSections: NavigationSection[] = [
         title: 'Productos',
         icon: <BookCheck className="h-4 w-4" />,
         href: '/product',
+      },
+      {
+        title: 'Clientes',
+        icon: <User className="h-4 w-4" />,
+        href: '/clients',
       },
     ],
   },
