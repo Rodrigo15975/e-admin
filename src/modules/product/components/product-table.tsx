@@ -152,7 +152,7 @@ export function ProductsTable() {
         {disabledBtn ? (
           SkeletonTableGlobal({ columns: ['Nombre', 'Descripción', 'Precio'] })
         ) : (
-          <Table>
+          <Table className="table-fixed w-full">
             <TableHeader>
               <TableRow>
                 <TableHead>Imagen</TableHead>
@@ -189,15 +189,15 @@ export function ProductsTable() {
                         className="w-10 h-10 object-cover rounded-full"
                       />
                     </TableCell>
-                    <TableCell className="font-medium">
+                    <TableCell className="font-medium max-w-[150px] truncate whitespace-nowrap">
                       {product.name}
                     </TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      <div className="line-clamp-2 max-w-xs">
-                        {product.description}
-                      </div>
+                    <TableCell className="font-medium max-w-[150px] truncate whitespace-nowrap">
+                      {product.description}
                     </TableCell>
-                    <TableCell>{product.type_camera}</TableCell>
+                    <TableCell className="font-medium max-w-[150px] truncate whitespace-nowrap">
+                      {product.type_camera}
+                    </TableCell>
                     <TableCell>{formatPrice(product.price)}</TableCell>
                     <TableCell className="text-right">
                       <DropdownMenu>
@@ -314,7 +314,7 @@ export function ProductsTable() {
 
       <div className="max-w-3xl">
         <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
-          <DialogContent className="sm:max-w-[825px] min-h-[ 600px]">
+          <DialogContent className="sm:max-w-[825px] max-h-[85vh] overflow-y-auto ">
             <DialogHeader className="flex-col pt-6 pb-2 flex  items-start justify-between">
               <DialogTitle>Detalles del Producto</DialogTitle>
               <DialogDescription>

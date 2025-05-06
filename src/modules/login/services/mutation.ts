@@ -23,11 +23,11 @@ export const useAuthLogin = () => {
       })
     },
     onError(error: AxiosError<{ message: string }>) {
-      if (error.message) {
-        toast(error.message, {
-          id: 'login-error',
-        })
-      }
+      const message = error.response?.data.message
+
+      toast.warning(message || 'Error inesperado', {
+        id: 'login-error',
+      })
     },
   })
 }
@@ -45,7 +45,7 @@ export const useLogout = () => {
       router.push('/login', {
         scroll: false,
       })
-      toast(message,{
+      toast(message, {
         id: 'logout-success',
         position: 'bottom-center',
         duration: 2000,
