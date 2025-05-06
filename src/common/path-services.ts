@@ -5,6 +5,8 @@ const PATH_SERVICES = {
   ROLES: '/roles',
   USER: '/user',
   PRODUCT: '/product',
+  CLIENTS: '/client',
 } as const
 
-export const { API, PRODUCT, USER, AUTH, ROLES, PROFILE } = PATH_SERVICES
+export const { API, PRODUCT, USER, AUTH, ROLES, PROFILE, CLIENTS } =
+  PATH_SERVICES
