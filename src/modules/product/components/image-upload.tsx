@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { useDropzone } from 'react-dropzone'
 import { X, Upload, ImageIcon } from 'lucide-react'
@@ -22,6 +22,12 @@ export function ImageUpload({
   const [isUploading, setIsUploading] = useState(false)
   const [files, setFiles] = useState<File[]>([])
 
+  useEffect(() => {
+    if (value.length === 0 && files.length > 0) {
+      setFiles([])
+    }
+  }, [value, files])
+
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
       if (value.length + acceptedFiles.length > maxFiles) return
@@ -35,13 +41,11 @@ export function ImageUpload({
 
         const newFiles = [...files, ...acceptedFiles]
         setFiles(newFiles)
-
         onChange([...value, ...newImageUrls], newFiles)
       } catch (error) {
         console.error('Error al procesar imágenes:', error)
       } finally {
         setIsUploading(false)
-        setFiles([])
       }
     },
     [value, onChange, maxFiles, files]
@@ -50,7 +54,7 @@ export function ImageUpload({
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
-      'image/*': ['.jpeg', '.jpg', '.png', '.webp'],
+      'image/*': ['.jpeg', '.jpg', '.png', '.webp', '.avif'],
     },
     maxFiles: maxFiles - value.length,
     disabled: isUploading || value.length >= maxFiles,
