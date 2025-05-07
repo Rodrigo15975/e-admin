@@ -128,7 +128,7 @@ export function ProductsTable() {
       },
     })
 
-  const disabledBtn = isLoadingProducts || isLoadingDeleteProduct
+  const disabledBtn = isLoadingProducts
 
   const filteredProducts = products?.data.filter((product) =>
     product.name.toLowerCase().includes(debouncedSearch.toLowerCase())

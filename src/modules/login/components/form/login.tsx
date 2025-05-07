@@ -59,7 +59,7 @@ const LoginForm = () => {
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder="Alexis"
+                      placeholder="Username"
                       className="rounded-r-none "
                       autoComplete="username"
                     />

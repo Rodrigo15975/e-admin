@@ -11,12 +11,9 @@ export const formSchema = z.object({
       message: 'La descripción debe tener al menos 10 caracteres.',
     })
     .optional(),
-  type_camera: z
-    .string()
-    .min(1, {
-      message: 'La descripción debe tener al menos 10 caracteres.',
-    })
-    .optional(),
+  type_camera: z.string().min(1, {
+    message: 'La descripción debe tener al menos 1 caracteres.',
+  }),
   price: z.coerce.number().positive({
     message: 'El precio debe ser un número positivo.',
   }),
